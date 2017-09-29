@@ -8,9 +8,9 @@ def corner_detection(img, th=25):
 
     print('Corner Detction Threshold: ', fast.getThreshold())
     print('Total points: ', len(kp))
-
-    points = [key.pt for key in kp]
-
+    print(kp[0].pt)
+    points = [int(value) for key in kp for value in key.pt]
+    points = list(zip(points[::2], points[1::2]))
     return points
 
 
@@ -28,3 +28,26 @@ def edge_detection(img):
     print('Total points: ', len(points))
 
     return points
+
+def frame_detection(img, point_spacing = 100, n_nodes_vert=None, n_nodes_hori=None):
+    img_vert = np.shape(img)[0]
+    img_hori = np.shape(img)[1]
+
+    if n_nodes_vert == None:
+        n_nodes_vert = int(img_vert / point_spacing)
+
+    if n_nodes_hori == None:
+        n_nodes_hori = int(img_hori / point_spacing)
+
+    range_vert = np.linspace(0, img_vert-1, num=n_nodes_vert, dtype=int)
+    range_hori = np.linspace(0, img_hori-1, num=n_nodes_hori, dtype=int)
+
+    left = list(zip(np.zeros(n_nodes_vert), range_vert))
+    right = list(zip([img_hori-1]*n_nodes_vert, range_vert))
+    bottom = list(zip(range_hori, np.zeros(n_nodes_hori)))
+    top = list(zip(range_hori, [img_vert-1]*n_nodes_hori))
+
+    return left + right + top + bottom
+
+
+
