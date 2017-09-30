@@ -8,9 +8,10 @@ def corner_detection(img, th=25):
 
     print('Corner Detction Threshold: ', fast.getThreshold())
     print('Total points: ', len(kp))
-    print(kp[0].pt)
+
     points = [int(value) for key in kp for value in key.pt]
     points = list(zip(points[::2], points[1::2]))
+
     return points
 
 

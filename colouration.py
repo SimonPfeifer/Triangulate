@@ -1,6 +1,7 @@
 import numpy as np
 
-def points_inside_triangle(A, B, C):
+def pixels_inside_triangle(nodes):
+    A, B, C = nodes
     x1, y1 = A
     x2, y2 = B
     x3, y3 = C
@@ -33,25 +34,22 @@ def points_inside_triangle(A, B, C):
     # triangle.
     X = [int(x) for x in X[triangle]]
     Y = [int(y) for y in Y[triangle]]
-    points = list(zip(X, Y))
+    pixels = list(zip(X, Y))
 
-    return points
+    return pixels
 
 
-def triangle_colour_average(points, img):
-    total = 0 
-    for p in points:
-        total += img[p[1]][p[0]]
+def triangle_colour_average(pixels, img):
+    pixels_y, pixels_x = list(zip(*pixels))
+    pixel_values = img[pixels_x, pixels_y]
+    total = np.sum(pixel_values)    
+
     try:
-        average = total/len(points)
+        average = int(total/len(pixels))
     except ZeroDivisionError:
         average = 0
         print('ZeroDivisionError')
 
-    return average
+    
+    return [average] * len(pixels)
 
-def triangle_colourise(points, img, value):
-    for p in points:
-        img[p[1]][p[0]] = value
-
-    return img
