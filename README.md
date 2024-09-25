@@ -1,4 +1,4 @@
-![](../example/colour_split.jpg)
+![](./example/colour_split.jpg)
 # Triangulate
 Small python scripts that render images with triangles to give them a low polygon look.
 
