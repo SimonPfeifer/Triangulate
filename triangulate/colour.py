@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def pixels_inside_triangle(nodes):
     A, B, C = nodes
     x1, y1 = A
@@ -38,18 +39,16 @@ def pixels_inside_triangle(nodes):
 
     return pixels
 
-
 def triangle_colour_average(pixels, img):
     pixels_y, pixels_x = list(zip(*pixels))
     pixel_values = img[pixels_x, pixels_y]
-    total = np.sum(pixel_values)    
+    total = np.sum(pixel_values, axis=0)   
 
     try:
-        average = int(total/len(pixels))
+        average = np.int16(total/len(pixels))
     except ZeroDivisionError:
         average = 0
         print('ZeroDivisionError')
 
     
     return [average] * len(pixels)
-
