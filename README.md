@@ -9,7 +9,7 @@ python -m pip install -r requirements.txt
 ```
 
 ### Usage
-The easiest way is to use the comman line function with the default values:
+The easiest way is to use the command line function with the default values:
 ```
 python ./triangulate/main.py -i ./example/colour.jpg -o ./example/test.jpg
 ```
@@ -22,7 +22,7 @@ python ./triangulate/main.py -i ./example/colour.jpg -o ./example/test_20_20.jpg
 The `--corner` flag sets the threshold for the [FAST corner detection](https://vovkos.github.io/doxyrest-showcase/opencv/sphinx_rtd_theme/page_tutorial_py_fast.html) algorithm. Higher values detect fewer corners.
 The `--radial` flag sets the minium radial distance allowed between vertices of the triangles, effectively setting the minim size of the triangles. The value is given in pixel units.
 
-You can get a list of the comman line flags and options with:
+You can get a list of the command line flags and options with:
 ```
 python ./triangulate/main.py --help
 ```
